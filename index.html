@@ -6,42 +6,25 @@
 
 <body style="margin:0px;overflow:hidden;">
 
-
-  <div id="game">
-    <canvas id="canvas" width="800" height="600" style="background:#000000;vertical-align:top;"></canvas>
-  </div>
-
-
   <script type="text/javascript" src="js/three.js"></script>
   <script type="text/javascript" src="js/FirstPersonControls.js"></script>
-
 
   <script type="text/javascript">
     "use strict";
 
-
     var scene, camera, renderer, controls;
-    var canvas = document.getElementById("canvas");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    var meshes = [];
     var clock = new THREE.Clock();
 
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.set(0, 150, 200);
 
     renderer = new THREE.WebGLRenderer({
-      canvas: canvas
+      antialias: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0xffffff);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = 0;
-    renderer.gammaInput = true;
-    renderer.gammaOutput = true;
+    document.body.appendChild(renderer.domElement)
 
     controls = new THREE.FirstPersonControls(camera, renderer.domElement);
     controls.movementSpeed = 200;
